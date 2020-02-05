@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WormsController : MonoBehaviour
+public class Player2Controller : MonoBehaviour
 {
     public Rigidbody rb;
     public float jumpForce;
     public float moveForce;
     public Rigidbody projectile;
     public float Speed;
-    public Transform Spawn;
+    public Transform SpawnPlayer2;
 
 
     void Start()
@@ -21,7 +21,7 @@ public class WormsController : MonoBehaviour
     {
         //jump
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Vector3 force = new Vector3(0, jumpForce, 0);
 
@@ -30,7 +30,7 @@ public class WormsController : MonoBehaviour
 
         //forwards
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             rb.drag = 1;
 
@@ -39,14 +39,14 @@ public class WormsController : MonoBehaviour
             rb.AddForce(force);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             rb.drag = 20;
         }
 
         //backwards
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             rb.drag = 1;
 
@@ -55,18 +55,18 @@ public class WormsController : MonoBehaviour
             rb.AddForce(force);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             rb.drag = 20;
         }
 
         //shooting
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.N))
         {
             Rigidbody clone;
             Vector3 pSpeed = new Vector3(Speed, 0, 0);
-            clone = Instantiate(projectile, Spawn.position, transform.rotation);
+            clone = Instantiate(projectile, SpawnPlayer2.position, transform.rotation);
             clone.AddForce(pSpeed);
         }
     }
