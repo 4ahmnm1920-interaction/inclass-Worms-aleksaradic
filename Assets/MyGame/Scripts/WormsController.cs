@@ -7,6 +7,8 @@ public class WormsController : MonoBehaviour
     public Rigidbody rb;
     public float jumpForce;
     public float moveForce;
+    public Rigidbody projectile;
+
 
     void Start()
     {
@@ -54,6 +56,16 @@ public class WormsController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             rb.drag = 20;
+        }
+
+        //shooting
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Rigidbody clone;
+            Vector3 forwards = new Vector3(1, 0.5f, 0);
+            clone = Instantiate(projectile, transform.position, transform.rotation);
+            clone.velocity = transform.TransformDirection(forwards * 10);
         }
     }
 }
