@@ -10,6 +10,8 @@ public class WormsController : MonoBehaviour
     public Rigidbody projectile;
     public float Speed;
     public Transform Spawn;
+    public float RotationValueRight;
+    public float RotationValueLeft;
 
     //keys
     public KeyCode JumpKey;
@@ -39,7 +41,7 @@ public class WormsController : MonoBehaviour
         if (Input.GetKey(RightKey))
         {
             rb.drag = 1;
-            transform.eulerAngles = new Vector3(0,0,0);
+            transform.eulerAngles = new Vector3(0,RotationValueRight,0);
             if (Speed > 1) 
             {
                 Speed = (Speed*(-1));
@@ -59,7 +61,7 @@ public class WormsController : MonoBehaviour
         if (Input.GetKey(LeftKey))
         {
             rb.drag = 1;
-            transform.eulerAngles = new Vector3(0,180,0);
+            transform.eulerAngles = new Vector3(0,RotationValueLeft,0);
             if (Speed < 1) 
             {
                 Speed = (Speed*(-1));
