@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +11,12 @@ public class WormsController : MonoBehaviour
     public float Speed;
     public Transform Spawn;
 
+    //keys
+    public KeyCode JumpKey;
+    public KeyCode LeftKey;
+    public KeyCode RightKey;
+    public KeyCode ShootKey;
+
 
     void Start()
     {
@@ -21,48 +27,57 @@ public class WormsController : MonoBehaviour
     {
         //jump
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(JumpKey))
         {
             Vector3 force = new Vector3(0, jumpForce, 0);
 
             rb.AddForce(force);
         }
 
-        //forwards
+        //move right
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(RightKey))
         {
             rb.drag = 1;
-
+            transform.eulerAngles = new Vector3(0,0,0);
+            if (Speed > 1) 
+            {
+                Speed = (Speed*(-1));
+            }
             Vector3 force = new Vector3(-moveForce, 0, 0);
 
             rb.AddForce(force);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(RightKey))
         {
             rb.drag = 20;
         }
 
-        //backwards
+        //move left
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(LeftKey))
         {
             rb.drag = 1;
+            transform.eulerAngles = new Vector3(0,180,0);
+            if (Speed < 1) 
+            {
+                Speed = (Speed*(-1));
+            }
 
             Vector3 force = new Vector3(moveForce, 0, 0);
 
             rb.AddForce(force);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(LeftKey))
         {
             rb.drag = 20;
         }
 
-        //shooting right
+        //shooting
 
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(ShootKey))
         {
 
             Rigidbody clone;
